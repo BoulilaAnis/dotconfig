@@ -1,0 +1,23 @@
+#!/bin/bash
+
+output_dir="$HOME/Videos/Recordings"
+date_format="%Y-%m-%d_%H-%M-%S"
+output_file="$output_dir/recording_$(date +$date_format).mkv"
+status_file="/tmp/recording_status.txt"
+
+# Check if ffmpeg process is running
+if pgrep -x "ffmpeg" > /dev/null
+then
+    # Stop recording
+    pkill -f "ffmpeg"
+    echo " " > "$status_file"
+else
+    # Start recording
+    resolution=$(xrandr | awk '/\*/ {print $1}')
+    echo "Detected resolution: $resolution"
+    ffmpeg -y -f x11grab -video_size "$resolution" -framerate 30 -i :0.0 -f pulse -ac 2 -i default -c:v libx264 -preset ultrafast -c:a aac -b:a 128k "$output_file" &
+    echo "[ Recording ]" > "$status_file"
+    # Send signal to slstatus to refresh status
+    # pkill -RTMIN+12 -x slstatus
+fi
+
