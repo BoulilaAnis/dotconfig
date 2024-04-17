@@ -1,0 +1,35 @@
+super + b
+	$BROWSER
+
+super + v
+	$TERMINAL -e nvim
+
+
+super + {KP_Add, KP_Subtract, BackSpace}
+	$HOME/.scripts/volume.sh {up, down, toggle}
+
+super + m
+	$HOME/.scripts/mount.sh
+
+super + shift + BackSpace
+	$HOME/.scripts/exit.sh
+
+super + f
+	$TERMINAL -e lf
+/* Print */
+/* 	maim -u -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png */
+Print
+    maim "$HOME/Images/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png"
+
+/* ctrl + Print */
+/* 	maim -s | xclip -selection clipboard -t image/png */
+ctrl +  Print
+    maim -s "$HOME/Images/screenshots/$(date +%Y-%m-d_%H-%M-%S).png"
+super + Print
+    $HOME/.scripts/screencast
+
+super + p
+	mpv $(xclip -o)
+
+ctrl + shift + d
+    $HOME/.scripts/displayselect
