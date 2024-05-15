@@ -85,16 +85,15 @@ bindkey '^e' edit-command-line
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 
-# alias ls="exa --group-directories-first --no-time"
+alias exa="exa -t=mod --time-style=default --sort=type --git"
 alias ls='ls --color=auto -h --group-directories-first'
 alias grep='grep --color=auto'
 
 
 
 alias vi='nvim'
-alias ll='ls -l'
-alias la='ll -a'
-
+alias ll='exa -l'
+alias la='exa -la'
 alias yay='yay --color=auto'
 
 alias i='doas pacman -S'
@@ -102,8 +101,8 @@ alias u='doas pacman -Syu'
 alias q='doas pacman -Ss'
 alias r='doas pacman -Rns'
 
-alias tree='tree -C --du -h'
-# alias tree='exa -T'
+# alias tree='tree -C --du -h'
+alias tree='exa -T'
 alias cat='bat'
 alias cp="cp -iv"
 alias mv="mv -iv"
@@ -117,6 +116,3 @@ alias vf='vi $(find . -type f | fzy)'
 
 
 print -n '\e[2 q'
-
-
-

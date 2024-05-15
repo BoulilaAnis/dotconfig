@@ -29,24 +29,8 @@ cmd open ${{
 }}
 
 
-
-
-
-
-
-
 cmd mkdir $mkdir -p "$@"
 cmd touch $touch "$@"
-
-
-
-
-
-
-
-
-
-
 
 cmd extract ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
